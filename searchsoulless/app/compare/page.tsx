@@ -1,7 +1,6 @@
 'use client'
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from 'axios';
-import { toBech32Address } from "@zilliqa-js/crypto"
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -63,12 +62,12 @@ export default function Compare() {
                             <p className="text-indigo-700 text-center">{firstSoullessData.metadataInfo.rank}</p>
                             <p className="tracking-tight text-center font-bold text-black leading-6">Category:</p>
                             <p className="text-indigo-700 text-center">{firstSoullessData.metadataInfo.category}</p>
-                            {firstSoullessData.info.owner.userInfo.name !== null ? <> <p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{firstSoullessData.info.owner.userInfo.name}</p></> : <><p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{toBech32Address(firstSoullessData.info.owner.ownerAddress)}</p></>}
+                            {firstSoullessData.info.owner.userInfo.name !== null ? <> <p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{firstSoullessData.info.owner.userInfo.name}</p></> : <><p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{firstSoullessData.info.owner.ownerAddress}</p></>}
                             <p className="tracking-tight text-center font-bold text-black leading-6">Owner Address:</p>
-                            <p className="text-indigo-700 text-center">{toBech32Address(firstSoullessData.info.owner.ownerAddress)}</p>
+                            <p className="text-indigo-700 text-center">{firstSoullessData.info.owner.ownerAddress}</p>
                             <div className="border-t-2 border-[#4DBBBA] flex flex-col justify-center p-2">
                                 <p className="tracking-tight text-center font-bold text-black leading-6">Links:</p>
-                                <Link href={`https://viewblock.io/zilliqa/address/${toBech32Address(firstSoullessData.info.owner.ownerAddress)}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                <Link href={`https://viewblock.io/zilliqa/address/${firstSoullessData.info.owner.ownerAddress}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
                                     Viewblock
                                 </Link>
                                 <p className="tracking-tight text-center font-bold text-black leading-6">Marketplaces:</p>
@@ -104,12 +103,12 @@ export default function Compare() {
                             <p className="text-indigo-700 text-center">{secondSoullessData.metadataInfo.rank}</p>
                             <p className="tracking-tight text-center font-bold text-black leading-6">Category:</p>
                             <p className="text-indigo-700 text-center">{secondSoullessData.metadataInfo.category}</p>
-                            {secondSoullessData.info.owner.userInfo.name !== null ? <> <p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{secondSoullessData.info.owner.userInfo.name}</p></> : <><p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{toBech32Address(secondSoullessData.info.owner.ownerAddress)}</p></>}
+                            {secondSoullessData.info.owner.userInfo.name !== null ? <> <p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{secondSoullessData.info.owner.userInfo.name}</p></> : <><p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{secondSoullessData.info.owner.ownerAddress}</p></>}
                             <p className="tracking-tight text-center font-bold text-black leading-6">Owner Address:</p>
-                            <p className="text-indigo-700 text-center">{toBech32Address(secondSoullessData.info.owner.ownerAddress)}</p>
+                            <p className="text-indigo-700 text-center">{secondSoullessData.info.owner.ownerAddress}</p>
                             <div className="border-t-2 border-[#4DBBBA] flex flex-col justify-center p-2">
                                 <p className="tracking-tight text-center font-bold text-black leading-6">Links:</p>
-                                <Link href={`https://viewblock.io/zilliqa/address/${toBech32Address(secondSoullessData.info.owner.ownerAddress)}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                <Link href={`https://viewblock.io/zilliqa/address/${secondSoullessData.info.owner.ownerAddress}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
                                     Viewblock
                                 </Link>
                                 <p className="tracking-tight text-center font-bold text-black leading-6">Marketplaces:</p>
