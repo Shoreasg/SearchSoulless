@@ -20,10 +20,10 @@ export default function Compare() {
     const [secondSoullessData, setSecondSoullessData] = useState<any>();
 
     const onSubmitData: SubmitHandler<FormValues> = async data => {
-        const firstSoullessResponse = await axios.get(`https://soullesscitadel.com/gallery/chapter-${data.firstSoullessChapter}/${data.firstSoullesSoullessID}?_data=routes/gallery/$collection/$itemId`)
+        const firstSoullessResponse = await axios.get(`https://soullesscitadel.com/gallery/chapter-${data.firstSoullessChapter}/${data.firstSoullesSoullessID}?_data=routes/gallery/$collection/$itemId`,{headers:{'Access-Control-Allow-Origin': '*'}})
         console.log(firstSoullessResponse.data)
         setFirstSoullessData(firstSoullessResponse.data)
-        const secondSoullessResponse = await axios.get(`https://soullesscitadel.com/gallery/chapter-${data.secondSoullessChapter}/${data.secondSoullesSoullessID}?_data=routes/gallery/$collection/$itemId`)
+        const secondSoullessResponse = await axios.get(`https://soullesscitadel.com/gallery/chapter-${data.secondSoullessChapter}/${data.secondSoullesSoullessID}?_data=routes/gallery/$collection/$itemId`,{headers:{'Access-Control-Allow-Origin': '*'}})
         console.log(secondSoullessResponse.data)
         setSecondSoullessData(secondSoullessResponse.data)
     }

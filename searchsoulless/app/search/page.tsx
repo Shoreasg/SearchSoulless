@@ -17,7 +17,7 @@ export default function Search() {
     const [soullessData, setSoullessData] = useState<any>();
 
     const onSubmitData: SubmitHandler<FormValues> = async data => {
-        const response = await axios.get(`https://soullesscitadel.com/gallery/chapter-${data.Chapter}/${data.SoullessID}?_data=routes/gallery/$collection/$itemId`)
+        const response = await axios.get(`https://soullesscitadel.com/gallery/chapter-${data.Chapter}/${data.SoullessID}?_data=routes/gallery/$collection/$itemId`,{headers:{'Access-Control-Allow-Origin': '*'}})
         setSoullessData(response.data)
     }
 
