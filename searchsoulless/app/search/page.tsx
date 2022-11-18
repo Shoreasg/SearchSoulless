@@ -75,7 +75,7 @@ export default function Search() {
                     </div>
                 </div>
                 :
-                <div className="h-screen flex items-center justify-center">
+                <div className="h-screen w-screen flex items-center justify-center">
                     <form onSubmit={(e) => e.preventDefault()}>
                         <div className="bg-white py-6 rounded-md px-10 max-w-lg shadow-md">
                             <h1 className="text-center text-lg font-bold">Search for your Soulless</h1>
