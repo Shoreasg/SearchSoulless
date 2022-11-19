@@ -70,7 +70,7 @@ export default function Compare() {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.outerWearPercentage}%&#41;</p>
                 </>)
             }
-            else if (traits.trait_type === "Jackets") {
+            else if (traits.trait_type === "Jackets" || traits.trait_type === "Jacket") {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.jacketsPercentage}%&#41;</p>
                 </>)
             }
@@ -80,6 +80,10 @@ export default function Compare() {
             }
             else if (traits.trait_type === "Sidekick") {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.sideKickPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Necklace") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.necklacesPercentage}%&#41;</p>
                 </>)
             }
         }
@@ -128,7 +132,7 @@ export default function Compare() {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.necklacesPercentage}%&#41;</p>
                 </>)
             }
-            else if (traits.trait_type === "Weapons") {
+            else if (traits.trait_type === "Weapons" || traits.trait_type === "Weapon") {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.weaponsPercentage}%&#41;</p>
                 </>)
             }
@@ -179,7 +183,7 @@ export default function Compare() {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.outerWearPercentage}%&#41;</p>
                 </>)
             }
-            else if (traits.trait_type === "Jackets") {
+            else if (traits.trait_type === "Jackets" || traits.trait_type === "Jacket") {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.jacketsPercentage}%&#41;</p>
                 </>)
             }
@@ -189,6 +193,10 @@ export default function Compare() {
             }
             else if (traits.trait_type === "Sidekick") {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.sideKickPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Necklace") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.necklacesPercentage}%&#41;</p>
                 </>)
             }
         }
@@ -237,7 +245,7 @@ export default function Compare() {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.necklacesPercentage}%&#41;</p>
                 </>)
             }
-            else if (traits.trait_type === "Weapons") {
+            else if (traits.trait_type === "Weapons" || traits.trait_type === "Weapon") {
                 return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.weaponsPercentage}%&#41;</p>
                 </>)
             }
