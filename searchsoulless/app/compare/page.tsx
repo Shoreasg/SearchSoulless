@@ -20,11 +20,9 @@ export default function Compare() {
     const [secondSoullessData, setSecondSoullessData] = useState<any>();
 
     const onSubmitData: SubmitHandler<FormValues> = async data => {
-        const firstSoullessResponse = await axios.get(`https://searchsoullessbackend.onrender.com/search/${data.firstSoullessChapter}/${data.firstSoullesSoullessID}`)
-        console.log(firstSoullessResponse.data)
+        const firstSoullessResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${data.firstSoullessChapter}/${data.firstSoullesSoullessID}`)
         setFirstSoullessData(firstSoullessResponse.data)
-        const secondSoullessResponse = await axios.get(`https://searchsoullessbackend.onrender.com/search/${data.secondSoullessChapter}/${data.secondSoullesSoullessID}`)
-        console.log(secondSoullessResponse.data)
+        const secondSoullessResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}${data.secondSoullessChapter}/${data.secondSoullesSoullessID}`)
         setSecondSoullessData(secondSoullessResponse.data)
     }
 
@@ -34,110 +32,320 @@ export default function Compare() {
 
     }
 
-    const mapFirstSoullessTraits = firstSoullessData?.traits.map((traits: any, key: number) => (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.attribute.content}:</p><p className="text-indigo-700 text-center"> {traits.value.content} &#40;{traits.probability.map((value: any) => {
-        if (firstSoullessData.info.collection === value.collection) {
-            return (value.value * 100).toFixed(2)
+    const mapFirstSoullessTraits = firstSoullessData?.tokenData.metadata.attributes.map((traits: any, key: number) => {
+        if (firstSoullessData.tokenData.metadata.chapter === 1) {
+            if (traits.trait_type === "Background") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.backgroundPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Body") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.bodyPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyes") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.eyePercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyewear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.eyeWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Face Accessories") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.faceAccessoriesPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Hair") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.hairPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Headwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.headWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Mouth") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.mouthPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Outerwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.outerWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Jackets") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.jacketsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Weapons") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.weaponsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Sidekick") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.sideKickPercentage}%&#41;</p>
+                </>)
+            }
         }
-    })}%&#41;</p></>))
+        else {
+            if (traits.trait_type === "Background") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.backgroundPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Body") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.bodyPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyes") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.eyePercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyewear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.eyeWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Face Accessories") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.faceAccessoriesPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Hair") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.hairPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Headwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.headWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Mouth") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.mouthPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Outerwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.outerWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Earrings") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.earringsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Necklaces") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.necklacesPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Weapons") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.weaponsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Sidekick") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{firstSoullessData.sideKickPercentage}%&#41;</p>
+                </>)
+            }
+        }
 
-    const mapSecondSoullessTraits = secondSoullessData?.traits.map((traits: any, key: number) => (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.attribute.content}:</p><p className="text-indigo-700 text-center"> {traits.value.content} &#40;{traits.probability.map((value: any) => {
-        if (secondSoullessData.info.collection === value.collection) {
-            return (value.value * 100).toFixed(2)
+
+    })
+
+    const mapSecondSoullessTraits = secondSoullessData?.tokenData.metadata.attributes.map((traits: any, key: number) => {
+        if (secondSoullessData.tokenData.metadata.chapter === 1) {
+            if (traits.trait_type === "Background") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.backgroundPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Body") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.bodyPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyes") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.eyePercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyewear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.eyeWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Face Accessories") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.faceAccessoriesPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Hair") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.hairPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Headwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.headWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Mouth") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.mouthPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Outerwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.outerWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Jackets") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.jacketsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Weapons") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.weaponsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Sidekick") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.sideKickPercentage}%&#41;</p>
+                </>)
+            }
         }
-    })}%&#41;</p></>))
+        else {
+            if (traits.trait_type === "Background") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.backgroundPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Body") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.bodyPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyes") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.eyePercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Eyewear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.eyeWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Face Accessories") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.faceAccessoriesPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Hair") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.hairPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Headwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.headWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Mouth") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.mouthPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Outerwear") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.outerWearPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Earrings") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.earringsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Necklaces") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.necklacesPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Weapons") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.weaponsPercentage}%&#41;</p>
+                </>)
+            }
+            else if (traits.trait_type === "Sidekick") {
+                return (<><p className="tracking-tight text-center text-black font-bold" key={key}>{traits.trait_type}:</p><p className="text-indigo-700 text-center"> {traits.value} &#40;{secondSoullessData.sideKickPercentage}%&#41;</p>
+                </>)
+            }
+        }
+
+
+    })
 
     return (
         <>
             {firstSoullessData && secondSoullessData ?
-            <>
-                <div className="h-fit w-fit md:w-screen flex justify-center">
-                    <div className="bg-white h-fit w-fit p-2">
-                        <div className="flex justify-center border-b-2 border-[#4DBBBA] p-2">
-                            <Image width={200} height={200} src={firstSoullessData.metadataInfo.resourceUrl} alt={"NFT image"} />
-                        </div>
-                        <div className=" border-b-2 border-[#4DBBBA] flex flex-col justify-center p-2">
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Collection:</p>
-                            <p className="text-indigo-700 text-center">{firstSoullessData.collection}</p>
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Rank:</p>
-                            <p className="text-indigo-700 text-center">{firstSoullessData.metadataInfo.rank}</p>
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Category:</p>
-                            <p className="text-indigo-700 text-center">{firstSoullessData.metadataInfo.category}</p>
-                            {firstSoullessData.info.owner.userInfo.name !== null ? <> <p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{firstSoullessData.info.owner.userInfo.name}</p></> : <><p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{firstSoullessData.info.owner.ownerAddress}</p></>}
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Owner Address:</p>
-                            <p className="text-indigo-700 text-center">{firstSoullessData.info.owner.ownerAddress}</p>
-                            <div className="border-t-2 border-[#4DBBBA] flex flex-col justify-center p-2">
-                                <p className="tracking-tight text-center font-bold text-black leading-6">Links:</p>
-                                <Link href={`https://viewblock.io/zilliqa/address/${firstSoullessData.info.owner.ownerAddress}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Viewblock
-                                </Link>
-                                <p className="tracking-tight text-center font-bold text-black leading-6">Marketplaces:</p>
-                                {firstSoullessData.collection === "chapter-1" ? <Link href={`https://zilswap.io/arky/collections/zil13fum43ax8qeprt5s9u6wsmrtw2vsvdrdhmvtrm/${firstSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Arky
-                                </Link> :
-                                    <Link href={`https://zilswap.io/arky/collections/zil1q3jmtxnyzzgznt5f972et240svvycfq3y5exf4/${firstSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                <>
+                    <div className="h-fit w-fit md:w-screen flex justify-center">
+                        <div className="bg-white h-fit w-fit p-2">
+                            <div className="flex justify-center border-b-2 border-[#4DBBBA] p-2">
+                                <Image width={200} height={200} src={firstSoullessData.tokenData.metadata.resources[0].uri} alt={"NFT image"} />
+                            </div>
+                            <div className=" border-b-2 border-[#4DBBBA] flex flex-col justify-center p-2">
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Collection:</p>
+                                <p className="text-indigo-700 text-center">Chapter {firstSoullessData.tokenData.metadata.chapter}</p>
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Rank:</p>
+                                <p className="text-indigo-700 text-center">{firstSoullessData.tokenData.metadata.rank}</p>
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Category:</p>
+                                <p className="text-indigo-700 text-center">{firstSoullessData.tokenData.metadata.category}</p>
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Owner Address:</p>
+                                <p className="text-indigo-700 text-center">{firstSoullessData.tokenData.owner}</p>
+                                <div className="border-t-2 border-[#4DBBBA] flex flex-col justify-center p-2">
+                                    <p className="tracking-tight text-center font-bold text-black leading-6">Links:</p>
+                                    {firstSoullessData.tokenData.metadata.chapter === 1 ?
+                                        <Link href={`https://viewblock.io/zilliqa/address/zil13fum43ax8qeprt5s9u6wsmrtw2vsvdrdhmvtrm?txsType=nft&specific=${firstSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Viewblock
+                                        </Link> : <Link href={`https://viewblock.io/zilliqa/address/zil1q3jmtxnyzzgznt5f972et240svvycfq3y5exf4?txsType=nft&specific=${firstSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Viewblock
+                                        </Link>}
+                                    <p className="tracking-tight text-center font-bold text-black leading-6">Marketplaces:</p>
+                                    {firstSoullessData.tokenData.metadata.chapter === 1 ? <Link href={`https://zilswap.io/arky/collections/zil13fum43ax8qeprt5s9u6wsmrtw2vsvdrdhmvtrm/${firstSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
                                         Arky
-                                    </Link>}
-                                {firstSoullessData.collection === "chapter-1" ? <Link href={`https://cathulhu.tools/market/0x8a79BAC7A6383211ae902f34e86C6b729906346D/${firstSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Cathulu.tools
-                                </Link> :
-                                    <Link href={`https://cathulhu.tools/market/0x0465b59a64109029Ae892f9595aaAf83184C2411/${firstSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                    </Link> :
+                                        <Link href={`https://zilswap.io/arky/collections/zil1q3jmtxnyzzgznt5f972et240svvycfq3y5exf4/${firstSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Arky
+                                        </Link>}
+                                    {firstSoullessData.tokenData.metadata.chapter === 1 ? <Link href={`https://cathulhu.tools/market/0x8a79BAC7A6383211ae902f34e86C6b729906346D/${firstSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
                                         Cathulu.tools
-                                    </Link>}
-                                <Link href={`https://soullesscitadel.com/gallery/${firstSoullessData.collection}/${firstSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Soulless MarketPlace
-                                </Link>
+                                    </Link> :
+                                        <Link href={`https://cathulhu.tools/market/0x0465b59a64109029Ae892f9595aaAf83184C2411/${firstSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Cathulu.tools
+                                        </Link>}
+                                    <Link href={`https://soullesscitadel.com/gallery/chapter-${firstSoullessData.tokenData.metadata.chapter}/${firstSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                        Soulless MarketPlace
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className='flex flex-col justify-center'>
+                                {mapFirstSoullessTraits}
                             </div>
                         </div>
-                        <div className='flex flex-col justify-center'>
-                            {mapFirstSoullessTraits}
-                        </div>
-                    </div>
-                    <div className="bg-white h-fit w-fit p-2">
-                        <div className="flex justify-center border-b-2 border-[#4DBBBA] p-2">
-                            <Image width={200} height={200} src={secondSoullessData.metadataInfo.resourceUrl} alt={"NFT image"} />
-                        </div>
-                        <div className=" border-b-2 border-[#4DBBBA] flex flex-col justify-center p-2">
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Collection:</p>
-                            <p className="text-indigo-700 text-center">{secondSoullessData.collection}</p>
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Rank:</p>
-                            <p className="text-indigo-700 text-center">{secondSoullessData.metadataInfo.rank}</p>
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Category:</p>
-                            <p className="text-indigo-700 text-center">{secondSoullessData.metadataInfo.category}</p>
-                            {secondSoullessData.info.owner.userInfo.name !== null ? <> <p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{secondSoullessData.info.owner.userInfo.name}</p></> : <><p className="tracking-tight text-center font-bold text-black leading-6">Owner:</p><p className="text-indigo-700 text-center">{secondSoullessData.info.owner.ownerAddress}</p></>}
-                            <p className="tracking-tight text-center font-bold text-black leading-6">Owner Address:</p>
-                            <p className="text-indigo-700 text-center">{secondSoullessData.info.owner.ownerAddress}</p>
-                            <div className="border-t-2 border-[#4DBBBA] flex flex-col justify-center p-2">
-                                <p className="tracking-tight text-center font-bold text-black leading-6">Links:</p>
-                                <Link href={`https://viewblock.io/zilliqa/address/${secondSoullessData.info.owner.ownerAddress}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Viewblock
-                                </Link>
-                                <p className="tracking-tight text-center font-bold text-black leading-6">Marketplaces:</p>
-                                {secondSoullessData.collection === "chapter-1" ? <Link href={`https://zilswap.io/arky/collections/zil13fum43ax8qeprt5s9u6wsmrtw2vsvdrdhmvtrm/${secondSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Arky
-                                </Link> :
-                                    <Link href={`https://zilswap.io/arky/collections/zil1q3jmtxnyzzgznt5f972et240svvycfq3y5exf4/${secondSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                        <div className="bg-white h-fit w-fit p-2">
+                            <div className="flex justify-center border-b-2 border-[#4DBBBA] p-2">
+                                <Image width={200} height={200} src={secondSoullessData.tokenData.metadata.resources[0].uri} alt={"NFT image"} />
+                            </div>
+                            <div className=" border-b-2 border-[#4DBBBA] flex flex-col justify-center p-2">
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Collection:</p>
+                                <p className="text-indigo-700 text-center">Chapter {secondSoullessData.tokenData.metadata.chapter}</p>
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Rank:</p>
+                                <p className="text-indigo-700 text-center">{secondSoullessData.tokenData.metadata.rank}</p>
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Category:</p>
+                                <p className="text-indigo-700 text-center">{secondSoullessData.tokenData.metadata.category}</p>
+                                <p className="tracking-tight text-center font-bold text-black leading-6">Owner Address:</p>
+                                <p className="text-indigo-700 text-center">{secondSoullessData.tokenData.owner}</p>
+                                <div className="border-t-2 border-[#4DBBBA] flex flex-col justify-center p-2">
+                                    <p className="tracking-tight text-center font-bold text-black leading-6">Links:</p>
+                                    {secondSoullessData.tokenData.metadata.chapter === 1 ?
+                                        <Link href={`https://viewblock.io/zilliqa/address/zil13fum43ax8qeprt5s9u6wsmrtw2vsvdrdhmvtrm?txsType=nft&specific=${secondSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Viewblock
+                                        </Link> : <Link href={`https://viewblock.io/zilliqa/address/zil1q3jmtxnyzzgznt5f972et240svvycfq3y5exf4?txsType=nft&specific=${secondSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Viewblock
+                                        </Link>}
+                                    <p className="tracking-tight text-center font-bold text-black leading-6">Marketplaces:</p>
+                                    {secondSoullessData.tokenData.metadata.chapter === 1 ? <Link href={`https://zilswap.io/arky/collections/zil13fum43ax8qeprt5s9u6wsmrtw2vsvdrdhmvtrm/${secondSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
                                         Arky
-                                    </Link>}
-                                {secondSoullessData.collection === "chapter-1" ? <Link href={`https://cathulhu.tools/market/0x8a79BAC7A6383211ae902f34e86C6b729906346D/${secondSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Cathulu.tools
-                                </Link> :
-                                    <Link href={`https://cathulhu.tools/market/0x0465b59a64109029Ae892f9595aaAf83184C2411/${secondSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                    </Link> :
+                                        <Link href={`https://zilswap.io/arky/collections/zil1q3jmtxnyzzgznt5f972et240svvycfq3y5exf4/${secondSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Arky
+                                        </Link>}
+                                    {secondSoullessData.tokenData.metadata.chapter === 1 ? <Link href={`https://cathulhu.tools/market/0x8a79BAC7A6383211ae902f34e86C6b729906346D/${secondSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
                                         Cathulu.tools
-                                    </Link>}
-                                <Link href={`https://soullesscitadel.com/gallery/${secondSoullessData.collection}/${secondSoullessData.itemId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
-                                    Soulless MarketPlace
-                                </Link>
+                                    </Link> :
+                                        <Link href={`https://cathulhu.tools/market/0x0465b59a64109029Ae892f9595aaAf83184C2411/${secondSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                            Cathulu.tools
+                                        </Link>}
+                                    <Link href={`https://soullesscitadel.com/gallery/chapter-${secondSoullessData.tokenData.metadata.chapter}/${secondSoullessData.tokenData.tokenId}`} className="flex flex-col justify-center text-center underline hover:text-blue-500">
+                                        Soulless MarketPlace
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className='flex flex-col justify-center'>
+                                {mapSecondSoullessTraits}
                             </div>
                         </div>
-                        <div className='flex flex-col justify-center'>
-                            {mapSecondSoullessTraits}
-                        </div>
+
                     </div>
-                  
-                </div>
-                  <div className="flex justify-center w-full m-2">
-                  <button   className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"onClick={handleSubmit((onHandleBack))} >Back</button>
-              </div>
+                    <div className="flex justify-center w-full m-2">
+                        <button className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" onClick={handleSubmit((onHandleBack))} >Back</button>
+                    </div>
                 </>
                 :
                 <div className="h-screen flex items-center justify-center">
