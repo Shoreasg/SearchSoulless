@@ -90,12 +90,13 @@ app.get("/search/:SoullessChapter/:SoullessID", async (req, res) => {
                 "eyePercentage": eyePercentage,
                 "headWearPercentage": headWearPercentage,
                 "outerWearPercentage": outerWearPercentage,
-                "faceAccessoriesPercentage": faceAcessoriesPercentage,
+                "necklacesPercentage": necklacesPercentage,
                 "jacketsPercentage": jacketsPercentage,
+                "faceAccessoriesPercentage": faceAcessoriesPercentage,
                 "mouthPercentage": mouthPercentage,
                 "eyeWearPercentage": eyeWearPercentage,
                 "sideKickPercentage": sideKickPercentage,
-                "necklacesPercentage": necklacesPercentage
+                
             })
         } catch (error) {
             res.status(400).json({ "error": "Request failed" })
