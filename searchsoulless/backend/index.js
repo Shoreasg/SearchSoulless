@@ -40,7 +40,6 @@ app.get("/search/:SoullessChapter/:SoullessID", async (req, res) => {
                 const attributesData = getNFTAttributes.data;
                 const calculation = ((attributesData[traitType][traitTypeValue] / 5555) * 100).toFixed(2)
 
-
                 if (traitType === "Background") {
                     backGroundPercentage = calculation
                 }
@@ -62,10 +61,13 @@ app.get("/search/:SoullessChapter/:SoullessID", async (req, res) => {
                 else if (traitType === "Outerwear") {
                     outerWearPercentage = calculation
                 }
+                else if (traitType === "Necklace") {
+                    necklacesPercentage = calculation
+                }
                 else if (traitType === "Face Accessories") {
                     faceAcessoriesPercentage = calculation
                 }
-                else if (traitType === "Jackets") {
+                else if (traitType === "Jackets" || traitType === "Jacket") {
                     jacketsPercentage = calculation
                 }
                 else if (traitType === "Mouth") {
@@ -88,11 +90,13 @@ app.get("/search/:SoullessChapter/:SoullessID", async (req, res) => {
                 "eyePercentage": eyePercentage,
                 "headWearPercentage": headWearPercentage,
                 "outerWearPercentage": outerWearPercentage,
-                "faceAccessoriesPercentage": faceAcessoriesPercentage,
+                "necklacesPercentage": necklacesPercentage,
                 "jacketsPercentage": jacketsPercentage,
+                "faceAccessoriesPercentage": faceAcessoriesPercentage,
                 "mouthPercentage": mouthPercentage,
                 "eyeWearPercentage": eyeWearPercentage,
-                "sideKickPercentage": sideKickPercentage
+                "sideKickPercentage": sideKickPercentage,
+                
             })
         } catch (error) {
             res.status(400).json({ "error": "Request failed" })
@@ -114,7 +118,7 @@ app.get("/search/:SoullessChapter/:SoullessID", async (req, res) => {
                 if (traitType === "Background") {
                     backGroundPercentage = calculation
                 }
-                else if (traitType === "Weapons") {
+                else if (traitType === "Weapons" || traitType ===  "Weapon") {
                     weaponsPercentage = calculation
                 }
                 else if (traitType === "Body") {
